@@ -2,8 +2,8 @@
 
 ### Task - 存包
 
-1. Given 剩余 15 个空位 When 存包 Then 返回一个带有空位编号的票据
-2. Given 剩余15 个空位 When 存包 Then 剩余 14 个空位
+1. Given 剩余 19 个空位 When 存包 Then 返回一个带有空位编号的票据
+2. Given 剩余19 个空位 When 存包 Then 剩余 18 个空位
 3. Given 剩余 0 个空位 When 存包 Then 提示柜子已满
 4. Given 剩余 0 个空位 When 存包 Then 剩余 0 个空位
 5. Given 14 号位已被占用 When 存包 Then 提示该位已被占用

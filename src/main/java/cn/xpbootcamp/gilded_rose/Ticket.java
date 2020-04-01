@@ -4,12 +4,15 @@ public class Ticket {
 
     private int number;
 
-    public Ticket(int number) {
-        this.number = number;
+    public Ticket() {
+        number = 0;
     }
 
     public int getNumber() {
         return number;
     }
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }
