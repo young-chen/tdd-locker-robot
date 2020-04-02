@@ -18,12 +18,28 @@ public class LockerTest {
     }
 
     @Test
-    void should_return_no_empty_capacity_when_depositing_given_free_box_quantity_between_1_and_19() throws NoEmptyCapacityException {
+    void should_throw_no_empty_capacity_when_depositing_given_free_box_quantity_between_1_and_19() throws NoEmptyCapacityException {
         Locker locker = new Locker();
         for (int i = 0; i < Locker.CAPACITY; i++) {
             locker.deposit();
         }
-        System.out.println(locker.getEmptyCapacity());
         assertThrows(NoEmptyCapacityException.class, () -> locker.deposit());
+    }
+
+    @Test
+    void should_release_used_space_and_increase_empty_capacity_when_fetching_given_no_used_ticket() throws NoEmptyCapacityException, InvalidTicketException {
+        Locker locker = new Locker();
+        Ticket ticket = locker.deposit();
+        int emptyCapacityBeforeFetch = locker.getEmptyCapacity();
+        assertThat(locker.fetch(ticket)).isTrue();
+        assertThat(locker.getEmptyCapacity()).isEqualTo(emptyCapacityBeforeFetch + 1);
+    }
+
+    @Test
+    void should_throw_invalid_ticket_when_fetching_given_used_ticket() throws NoEmptyCapacityException, InvalidTicketException {
+        Locker locker = new Locker();
+        Ticket ticket = locker.deposit();
+        locker.fetch(ticket);
+        assertThrows(InvalidTicketException.class, () -> locker.fetch(ticket));
     }
 }

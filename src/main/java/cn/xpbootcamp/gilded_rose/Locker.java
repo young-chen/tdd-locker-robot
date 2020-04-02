@@ -20,4 +20,12 @@ public class Locker {
         }
         return ticket;
     }
+
+    public boolean fetch(Ticket ticket) throws InvalidTicketException {
+        if (spaces.remove(ticket)) {
+            return true;
+        } else {
+            throw new InvalidTicketException();
+        }
+    }
 }
