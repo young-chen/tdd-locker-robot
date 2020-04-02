@@ -14,6 +14,10 @@ public class Locker {
         return CAPACITY - spaces.size();
     }
 
+    public boolean hasEmptySpace() {
+        return (CAPACITY - spaces.size()) != 0;
+    }
+
     public Ticket deposit() throws NoEmptyCapacityException {
         if (getEmptyCapacity() != 0) {
             Ticket ticket = new Ticket();
@@ -30,5 +34,9 @@ public class Locker {
         } else {
             throw new InvalidTicketException();
         }
+    }
+
+    public boolean contains(Ticket ticket) {
+        return spaces.contains(ticket);
     }
 }
