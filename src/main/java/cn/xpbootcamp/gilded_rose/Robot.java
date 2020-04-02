@@ -10,12 +10,11 @@ public class Robot {
     }
 
     public Ticket deposit() throws NoEmptyCapacityException {
-        Ticket ticket = null;
         for (int i = 0; i < lockers.size(); i++) {
             if (lockers.get(i).getEmptyCapacity() != 0) {
-                ticket = lockers.get(i).deposit();
+                return lockers.get(i).deposit();
             }
         }
-        return ticket;
+        throw new NoEmptyCapacityException();
     }
 }
