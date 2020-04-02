@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RobotTest {
 
@@ -65,5 +66,15 @@ public class RobotTest {
         assertThat(robot.fetch(ticket)).isTrue();
         assertThat(lockers.getEmptyCapacity()).isEqualTo(titleEmptyCapacityBeforeFetch + 1);
         assertThat(locker2.getEmptyCapacity()).isEqualTo(locker2EmptyCapacityBeforeFetch + 1);
+    }
+
+    @Test
+    void should_throw_invalid_ticket_exception_when_use_robot_fetching_given_used_ticket_and_one_locker() throws NoEmptyCapacityException, InvalidTicketException {
+        Lockers lockers = new Lockers();
+        lockers.add(new Locker());
+        Robot robot = new Robot(lockers);
+        Ticket ticket = robot.deposit();
+        robot.fetch(ticket);
+        assertThrows(InvalidTicketException.class, () -> robot.fetch(ticket));
     }
 }
