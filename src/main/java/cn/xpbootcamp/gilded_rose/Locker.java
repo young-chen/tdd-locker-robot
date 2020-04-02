@@ -1,5 +1,8 @@
 package cn.xpbootcamp.gilded_rose;
 
+import cn.xpbootcamp.gilded_rose.exception.InvalidTicketException;
+import cn.xpbootcamp.gilded_rose.exception.NoEmptyCapacityException;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,13 +15,13 @@ public class Locker {
     }
 
     public Ticket deposit() throws NoEmptyCapacityException {
-        Ticket ticket = new Ticket();
         if (getEmptyCapacity() != 0) {
+            Ticket ticket = new Ticket();
             spaces.add(ticket);
+            return ticket;
         } else {
             throw new NoEmptyCapacityException();
         }
-        return ticket;
     }
 
     public boolean fetch(Ticket ticket) throws InvalidTicketException {
