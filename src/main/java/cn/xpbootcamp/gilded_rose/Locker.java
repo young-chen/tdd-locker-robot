@@ -1,34 +1,23 @@
 package cn.xpbootcamp.gilded_rose;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Locker {
+    public final static int CAPACITY = 19;
+    private Set<Ticket> spaces = new HashSet<Ticket>();
 
-    private Boolean[] boxs;
-
-    public Locker(int capacity) {
-        boxs = new Boolean[capacity];
-        for (int i = 0; i < boxs.length; i++) {
-            boxs[i] = true;
-        }
+    public int getEmptyCapacity() {
+        return CAPACITY - spaces.size();
     }
 
-    public Ticket checkIn() {
+    public Ticket deposit() throws NoEmptyCapacityException {
         Ticket ticket = new Ticket();
-        for (int i = 0; i < boxs.length; i++) {
-            Boolean isEmpty = boxs[i];
-            if (isEmpty) {
-                ticket.setNumber(i + 1);
-                boxs[i] = false;
-                break;
-            }
+        if (getEmptyCapacity() != 0) {
+            spaces.add(ticket);
+        } else {
+            throw new NoEmptyCapacityException();
         }
         return ticket;
-    }
-
-    public int getEmptyBoxQuantity() {
-        int titleEmpty = 0;
-        for (int i = 0; i < boxs.length; i++) {
-            if (boxs[i]) titleEmpty++;
-        }
-        return titleEmpty;
     }
 }

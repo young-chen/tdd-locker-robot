@@ -2,18 +2,11 @@
 
 ### Task - 存包
 
-1. Given 剩余 19 个空位 When 存包 Then 返回一个带有空位编号的票据
-2. Given 剩余19 个空位 When 存包 Then 剩余 18 个空位
-3. Given 剩余 0 个空位 When 存包 Then 提示柜子已满
-4. Given 剩余 0 个空位 When 存包 Then 剩余 0 个空位
-5. Given 14 号位已被占用 When 存包 Then 提示该位已被占用
-6. Given 15 号位空闲 When 存包 Then 提示可以使用 
+1. Given 储物柜有多个空位 When 存包 Then 返回一个票据, 空位数量减一
+2. Given 储物柜没有空位 When 存包 Then 提示柜子已满 
 
 ### Task - 取包
 
-1. Given 剩余 0 个空位 When 取包 Then 剩余1 个空位
-2. Given 剩余 0 个空位 When 取包 Then 票据失效
-3. Given 失效票据 When 取包 Then 提示票据已失效
-4. Given 失效票据 When 取包 Then 剩余空位数不变
-5. Given 有效的 15 号位编号票据 When 取包 Then 15 号位状态为空闲
+1. Given 一个未使用过的票据 When 取包 Then 可以成功取出对应的包，空位梳理加一
+2. Given 一个使用过的票据 When 取包 Then 提示票据失效
 
